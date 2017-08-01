@@ -26,10 +26,15 @@ open class BaseActivity : AppCompatActivity(){
                 Location.CHART -> Intent(context, ChartActivity::class.java)
                 Location.NEWS -> Intent(context, NewsActivity::class.java)
                 Location.SEARCH -> Intent(context, SearchActivity::class.java)
-                else -> null
+                else -> Intent(context, MainActivity::class.java)
             }
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+
+
+
             startActivity(intent)
-            this.overridePendingTransition(0,0)
+            this.overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
             finish()
         }
     }
