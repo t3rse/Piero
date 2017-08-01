@@ -2,10 +2,12 @@ package com.t3rse.piero.core
 
 import android.content.Context
 import android.content.Intent
+import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import com.t3rse.piero.*
+import com.t3rse.piero.core.ext.disableShift
 
 /**
  * Created by david on 7/28/17.
@@ -14,10 +16,11 @@ open class BaseActivity : AppCompatActivity(){
 
     lateinit var currentLocation: Location
 
-     fun setText(text: String){
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
-     }
 
+    }
 
     fun navigate(location: Location, context: Context){
         if(currentLocation != location) {
@@ -37,6 +40,19 @@ open class BaseActivity : AppCompatActivity(){
             this.overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
             finish()
         }
+    }
+
+    fun setNavigation(navigation: BottomNavigationView, location: Location){
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+        navigation.selectedItemId =
+                when(location){
+                    Location.HOME -> R.id.navigation_home
+                    Location.CHART -> R.id.navigation_notifications
+                    Location.NEWS -> R.id.navigation_dashboard
+                    Location.SEARCH -> R.id.navigation_search
+                    else -> R.id.navigation_home
+                }
+        navigation.disableShift()
     }
 
     enum class Location{

@@ -7,9 +7,8 @@ import android.view.MenuItem
 import android.widget.TextView
 import com.t3rse.piero.core.BaseActivity
 
-class NewsActivity : BaseActivity() {
 
-    private var mTextMessage: TextView? = null
+class NewsActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,11 +16,8 @@ class NewsActivity : BaseActivity() {
 
         currentLocation = Location.NEWS
 
-
-        mTextMessage = findViewById(R.id.message) as TextView
         val navigation = findViewById(R.id.navigation) as BottomNavigationView
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
-        navigation.selectedItemId = R.id.navigation_dashboard
+        setNavigation(navigation, currentLocation)
     }
 
 }

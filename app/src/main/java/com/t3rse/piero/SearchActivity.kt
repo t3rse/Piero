@@ -7,11 +7,8 @@ import android.view.MenuItem
 import android.widget.TextView
 import com.t3rse.piero.core.BaseActivity
 
+
 class SearchActivity : BaseActivity() {
-
-    private var mTextMessage: TextView? = null
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,8 +17,7 @@ class SearchActivity : BaseActivity() {
         currentLocation = Location.SEARCH
 
         val navigation = findViewById(R.id.navigation) as BottomNavigationView
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
-        navigation.selectedItemId = R.id.navigation_search
+        setNavigation(navigation, currentLocation)
     }
 
 }
